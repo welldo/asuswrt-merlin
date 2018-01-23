@@ -1,6 +1,9 @@
 Asuswrt-Merlin
 ==============
 
+http://dlcdnet.asus.com/pub/ASUS/wireless/RT-AC3100/GPL_RT_AC3100_30043807743.zip
+
+
 About
 -----
 Asuswrt is the name of the firmware Asus has developed for
