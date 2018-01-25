@@ -1,0 +1,5 @@
+export PATH=$PATH:/opt/brcm/hndtools-mipsel-linux/bin:/opt/brcm/hndtools-mipsel-uclibc/bin:/opt/brcm-arm/bin
+alias a31='cd ~/asuswrt-merlin/release/src-rt-7.14.114.x/src/'
+alias asu='cd ~/asuswrt-merlin'
+
+cd ~/asuswrt-merlin/release/src-rt-7.14.114.x/src

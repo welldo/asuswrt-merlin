@@ -6,6 +6,9 @@ Notes
 This is the legacy 380.xx branch - future development is being gradually moved to the new NG (New Generation) branch:
 
 [https://github.com/RMerl/asuswrt-merlin.ng](https://github.com/RMerl/asuswrt-merlin.ng)
+修改参考：http://www.right.com.cn/forum/thread-259767-1-1.html
+
+编译说明参考：https://github.com/RMerl/asuswrt-merlin/wiki/Compile-Firmware-from-source-using-Ubuntu
 
 
 #### Please do not use Github's Issue tracker for support requests.  Use the support forums at [SNBForums](https://www.snbforums.com/forums/asuswrt-merlin.42/) instead.  The issue tracker is for development/bug tracking purposes only!

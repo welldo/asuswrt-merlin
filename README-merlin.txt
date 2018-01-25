@@ -1,6 +1,11 @@
 Asuswrt-Merlin
 ==============
 
+修改参考：http://www.right.com.cn/forum/thread-259767-1-1.html
+
+编译说明参考：https://github.com/RMerl/asuswrt-merlin/wiki/Compile-Firmware-from-source-using-Ubuntu
+
+asus 源码参考
 http://dlcdnet.asus.com/pub/ASUS/wireless/RT-AC3100/GPL_RT_AC3100_30043807743.zip
 
 
