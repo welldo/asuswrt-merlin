@@ -1,0 +1,2 @@
+date > ~/m_$(date +%m%d).log
+make -j1 V=s rt-ac3100  >> ~/m_$(date +%m%d).log && swaks --to welldo@189.cn --attach ~/m_$(date +%m%d).log
