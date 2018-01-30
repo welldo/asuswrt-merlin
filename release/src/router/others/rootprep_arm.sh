@@ -20,6 +20,7 @@ ln -sf tmp/media media
 # etc
 rm -rf etc
 ln -sf tmp/etc etc
+mkdir -p -m 0700 /etc/dnsmasq.user
 echo "/lib" > etc/ld.so.conf
 echo "/usr/lib" >> etc/ld.so.conf
 /sbin/ldconfig -r $ROOTDIR

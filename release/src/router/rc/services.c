@@ -872,13 +872,13 @@ int restart_dnsmasq(int need_link_DownUp)
 }
 #endif
 
-void start_dnsmasq(void)
-{
+ 
+void start_dnsmasq(void) {
 	FILE *fp;
 	char *lan_ifname, *lan_ipaddr;
 	char *value, *value2;
 	int i, have_dhcp = 0;
-
+mkdir("/etc/dnsmasq.user", 0700);
 	TRACE_PT("begin\n");
 
 	if (getpid() != 1) {
