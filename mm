@@ -10,6 +10,6 @@ mv  ~/asuswrt-merlin/release/src-rt-7.14.114.x/src/image/RT-AC3100_380.69_1.trx 
 echo "move  ./image/RT-AC3100_380.69_2.trx TO ~/$romname "  >> ~/m_$(date +%m%d).log
 fi
 if [ -f ~/$romname ];then
-swaks --to welldo@189.cn --header "Subject:Compile successfully - `date -R` " --body "escape time:`$(($end_time - $begin_time))`Seconds.` sed 3q ~/m_0129.log` `tail -n 11 ~/m_0129.log |sed 7q`" --attach ~/m_$(date +%m%d).log
+swaks --to welldo@189.cn --header "Subject:Compile successfully - `date -R` " --body "escape time:`$(($end_time - $begin_time))`Seconds.` sed 3q ~/m_$(date +%m%d).log` `tail -n 11 ~/m_$(date +%m%d).log |sed 7q`" --attach ~/m_$(date +%m%d).log
 fi
 
