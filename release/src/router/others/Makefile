@@ -5,6 +5,7 @@ all:
 install:
 	install -d $(INSTALLDIR)/sbin
 	install -d $(INSTALLDIR)/usr/sbin
+	install -d $(INSTALLDIR)/usr/bin
 	install -d $(INSTALLDIR)/lib/k3screenctrl
 
 ifeq ($(TCONFIG_USB),y)
@@ -49,8 +50,11 @@ endif
 	install -m 0700 k3wl $(INSTALLDIR)/usr/sbin
 
 # K3 lostlonger
-	install -m 0700 base64 $(INSTALLDIR)/usr/sbin
+	#install -m 0700 base64 $(INSTALLDIR)/usr/sbin
 	install -m 0700 vlmcsd $(INSTALLDIR)/usr/sbin
+	install -m 0755 wl_cr $(INSTALLDIR)/usr/sbin
+	install -d $(INSTALLDIR)/usr/bin
+	install -m 0755 ddns.sh $(INSTALLDIR)/usr/bin
 
 # Entware setup script
 	install -m 0700 entware_install.sh $(INSTALLDIR)/usr/sbin
