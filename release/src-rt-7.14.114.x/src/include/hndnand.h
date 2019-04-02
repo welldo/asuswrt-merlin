@@ -40,7 +40,7 @@
 #if CONFIG_LINUX_MTD == 32
  #define NFL_BOOT_OS_SIZE       0x2000000
 #elif CONFIG_LINUX_MTD == 64
-#define NFL_BOOT_OS_SIZE        0x2600000
+#define NFL_BOOT_OS_SIZE        0x3000000	/* 0x2600000 */
 #elif CONFIG_LINUX_MTD == 128
 #define NFL_BOOT_OS_SIZE        0x1c00000
 #else
