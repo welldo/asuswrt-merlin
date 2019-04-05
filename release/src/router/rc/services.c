@@ -935,6 +935,7 @@ mkdir("/etc/dnsmasq.user", 0700);
 		fclose(fp);
 		use_custom_config("hosts", "/etc/hosts");
 		run_postconf("hosts","/etc/hosts");
+		chmod("/etc/hosts", 0644);
 	} else
 		perror("/etc/hosts");
 
@@ -1002,7 +1003,7 @@ mkdir("/etc/dnsmasq.user", 0700);
 	fprintf(fp, "pid-file=/var/run/dnsmasq.pid\n"
 		    "user=nobody\n"
 		    "bind-dynamic\n"		// listen only on interface & lo
-			"conf-dir=/etc/dnsmasq.user\n"
+		    "conf-dir=/etc/dnsmasq.user\n"
 		);
 
 #if defined(RTCONFIG_REDIRECT_DNAME)
@@ -1316,12 +1317,13 @@ mkdir("/etc/dnsmasq.user", 0700);
 
 	use_custom_config("dnsmasq.conf","/etc/dnsmasq.conf");
 	run_postconf("dnsmasq","/etc/dnsmasq.conf");
+	chmod("/etc/dnsmasq.conf", 0644);
 
 	/* Create resolv.conf with empty nameserver list */
-	f_write(dmresolv, NULL, 0, FW_APPEND, 0666);
+	f_write(dmresolv, NULL, 0, FW_APPEND, 0644);
 
 	/* Create resolv.dnsmasq with empty server list */
-	f_write(dmservers, NULL, 0, FW_APPEND, 0666);
+	f_write(dmservers, NULL, 0, FW_APPEND, 0644);
 
 #if (defined(RTCONFIG_TR069) && !defined(RTCONFIG_TR181))
 	eval("dnsmasq", "--log-async", "-6", "/sbin/dhcpc_lease");
@@ -2498,8 +2500,18 @@ start_ddns(void)
 	else if (strcmp(server, "WWW.ASUS.COM")==0) {
 		service = "dyndns", asus_ddns = 1;
 	}
-	else if (strcmp(server, "DOMAINS.GOOGLE.COM") == 0)
+	else if (strcmp(server, "DOMAINS.GOOGLE.COM")==0) {
 		service = "dyndns", asus_ddns=3;
+	}
+	else if (strcmp(server, "3322")==0) {
+		service = "3322", asus_ddns=4;
+	}
+	else if (strcmp(server, "oray")==0) {
+		service = "oray", asus_ddns=4;
+	}
+	else if (strcmp(server, "changeip")==0) {
+		service = "changeip", asus_ddns=4;
+	}
 	else if (strcmp(server, "WWW.ORAY.COM")==0) {
 		service = "peanuthull", asus_ddns = 2;
 	} else {
@@ -2550,6 +2562,14 @@ start_ddns(void)
 
 			eval("phddns", "-c", "/etc/phddns.conf", "-d");
 		}
+	}
+	else if (asus_ddns == 4) {
+		if((time_fp=fopen("/tmp/ddns.cache","w")))
+		{
+			fprintf(time_fp,"%ld,%s",time(&now),wan_ip);
+			fclose(time_fp);
+		}
+		eval("ddns.sh", user, passwd, host, wan_ip);
 	}
 	else if (asus_ddns == 1) {
 		char *nserver = nvram_invmatch("ddns_serverhost_x", "") ?
@@ -5627,8 +5647,6 @@ start_services(void)
 
 	start_ecoguard();
 
-	run_custom_script("services-start", NULL);
-
 //	start_upnp();
 
 	sanity_logs();
@@ -5636,6 +5654,8 @@ start_services(void)
 #if !(defined(RTCONFIG_QCA) || defined(RTCONFIG_RALINK) || defined(RTCONFIG_REALTEK))
 	start_erp_monitor();
 #endif
+
+	run_custom_script("services-start", NULL);
 
 	return 0;
 }
